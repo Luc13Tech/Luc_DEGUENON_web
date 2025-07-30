@@ -698,7 +698,7 @@
         
         // Create mailto link with all form data
         const subject = `Nouveau message de ${name}`;
-        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+        const body = `Nom:${name} Email:${email} Téléphone:${phone} Message:${message}`;
         
         // Open user's email client with pre-filled data
         window.location.href = `mailto:lucdeguenon11@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
