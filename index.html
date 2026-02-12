@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <!-- ✅ VIEWPORT OPTIMISÉ POUR MOBILE -->
+    <!-- ✅ VIEWPORT OPTIMISÉ POUR MOBILE - CORRECTION MENU -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <meta name="theme-color" content="#4f46e5">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -71,19 +71,21 @@
         /* ✅ RESET & BASE MOBILE */
         * {
             -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-        
-        body {
+        html, body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
         }
 
         /* ✅ EFFET GLASSMORPHISM OPTIMISÉ */
@@ -129,10 +131,6 @@
                 font-size: 32px;
             }
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-        }
         .whatsapp-float:active {
             transform: scale(0.95);
         }
@@ -170,7 +168,128 @@
             }
         }
 
-        /* ✅ CARTES SERVICE OPTIMISÉES MOBILE */
+        /* ✅ MENU MOBILE - CORRECTION COMPLÈTE */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh; /* ✅ Utilise dynamic viewport pour les navigateurs modernes */
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 9998;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto; /* ✅ Permet le défilement si nécessaire */
+            padding: 0;
+            margin: 0;
+        }
+        
+        #mobile-menu.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        #mobile-menu .glass {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            margin: 80px auto 20px;
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+        
+        .dark #mobile-menu .glass {
+            background: #1f2937;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* ✅ Pour les très petits écrans */
+        @media (max-width: 380px) {
+            #mobile-menu .glass {
+                width: 95%;
+                padding: 16px;
+                margin-top: 70px;
+            }
+        }
+        
+        /* ✅ Animation menu mobile */
+        #mobile-menu .glass {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        
+        #mobile-menu.show .glass {
+            transform: translateY(0);
+        }
+        
+        /* ✅ Bouton menu mobile */
+        #mobile-menu-button {
+            position: relative;
+            z-index: 9999;
+        }
+        
+        /* ✅ CTA FIXE MOBILE */
+        .cta-fixed-mobile {
+            display: none;
+        }
+        @media (max-width: 639px) {
+            .cta-fixed-mobile {
+                display: flex;
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 90px;
+                background: linear-gradient(135deg, #4f46e5, #6366f1);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+                z-index: 9997;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 14px;
+                border: 1px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(10px);
+            }
+            .dark .cta-fixed-mobile {
+                background: linear-gradient(135deg, #4338ca, #4f46e5);
+            }
+        }
+
+        /* ✅ NAVIGATION PRINCIPALE */
+        #navbar {
+            z-index: 9997;
+        }
+
+        /* ✅ ÉVITER LE DÉPASSEMENT */
+        img, svg, iframe, video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ✅ GRILLES RESPONSIVES */
+        .grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        /* ✅ BOUTONS TOUCH OPTIMISÉS */
+        button, a {
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+
+        /* ✅ CARTES SERVICE */
         .service-card {
             background: white;
             border-radius: 20px;
@@ -185,24 +304,8 @@
             background: #1f2937;
             border-color: rgba(255,255,255,0.05);
         }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.2);
-        }
-        @media (max-width: 639px) {
-            .service-card {
-                padding: 1.25rem;
-            }
-            .service-card:hover {
-                transform: translateY(-3px);
-            }
-        }
 
-        /* ✅ CARTES TARIFS RESPONSIVES */
-        .pricing-card {
-            transition: all 0.3s ease;
-            height: 100%;
-        }
+        /* ✅ CARTES TARIFS */
         .pricing-card > div {
             height: 100%;
             display: flex;
@@ -239,7 +342,7 @@
             }
         }
 
-        /* ✅ TOAST NOTIFICATION MOBILE */
+        /* ✅ TOAST NOTIFICATION */
         .toast-notification {
             position: fixed;
             bottom: 100px;
@@ -276,145 +379,56 @@
             color: white;
         }
 
-        /* ✅ NAVIGATION MOBILE */
-        #mobile-menu {
-            transition: all 0.3s ease;
+        /* ✅ SKILL BARS */
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(99, 102, 241, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-        #mobile-menu .glass {
-            margin: 0 16px;
-            border-radius: 20px;
-        }
-
-        /* ✅ SECTION HERO MOBILE */
-        @media (max-width: 767px) {
-            .hero-title {
-                font-size: 2.5rem !important;
-                line-height: 1.2 !important;
-            }
-            .hero-subtitle {
-                font-size: 1.25rem !important;
-            }
+        .skill-bar-fill {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #818cf8);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
         }
 
-        /* ✅ GRILLES RESPONSIVES */
-        .grid {
-            display: grid;
-            gap: 1rem;
+        /* ✅ TIMELINE */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid #6366f1;
+            margin-bottom: 25px;
+            transition: all 0.3s;
         }
-        @media (max-width: 639px) {
-            .grid-cols-1 {
-                grid-template-columns: 1fr;
-            }
-            .gap-8 {
-                gap: 1.25rem;
-            }
+        .timeline-dot {
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: #6366f1;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
-
-        /* ✅ IMAGES RESPONSIVES */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* ✅ BOUTONS TOUCH OPTIMISÉS */
-        button, a {
-            touch-action: manipulation;
-        }
-
-        /* ✅ ACCORDÉON FAQ */
-        .faq-content {
-            transition: all 0.3s ease;
-        }
-
-        /* ✅ ÉVITER DÉBORDEMENT */
-        .max-w-7xl {
-            max-width: 100%;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        @media (min-width: 640px) {
-            .max-w-7xl {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .max-w-7xl {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* ✅ ANIMATIONS MOBILE */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* ✅ BOUTON COMMANDER FIXE MOBILE (OPTIONNEL) */
-        .cta-fixed-mobile {
-            display: none;
-        }
-        @media (max-width: 639px) {
-            .cta-fixed-mobile {
-                display: flex;
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                right: 90px;
-                background: linear-gradient(135deg, #4f46e5, #6366f1);
-                color: white;
-                padding: 12px 20px;
-                border-radius: 50px;
-                font-weight: 600;
-                box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
-                z-index: 9997;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                font-size: 14px;
-                border: 1px solid rgba(255,255,255,0.2);
-                backdrop-filter: blur(10px);
-            }
-            .dark .cta-fixed-mobile {
-                background: linear-gradient(135deg, #4338ca, #4f46e5);
-            }
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                z-index: 9999;
-            }
-            .disponible-badge {
-                bottom: 90px;
-                right: 25px;
-            }
-        }
-
-        /* ✅ CORRECTION GRID TARIFS MOBILE */
-        @media (max-width: 1023px) {
-            #pricing-container {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-            }
-        }
-        @media (max-width: 639px) {
-            #pricing-container {
-                grid-template-columns: 1fr !important;
-            }
+        .dark .timeline-dot {
+            border-color: #1f2937;
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-500 overflow-x-hidden">
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
 
-    <!-- ✅ NOTIFICATION TOAST AMÉLIORÉE MOBILE -->
+    <!-- ✅ NOTIFICATION TOAST -->
     <div id="toast" class="toast-notification">
         <i class="fas fa-check-circle text-green-500 text-xl flex-shrink-0"></i>
         <span id="toast-message" class="text-sm sm:text-base">Numéro copié !</span>
     </div>
 
-    <!-- ✅ BOUTON WHATSAPP OPTIMISÉ MOBILE -->
+    <!-- ✅ BOUTON WHATSAPP -->
     <a href="https://wa.me/2290159609581" class="whatsapp-float" id="whatsappBtn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -423,18 +437,18 @@
         Disponible
     </span>
     
-    <!-- ✅ CTA FIXE POUR MOBILE (COMMANDER) -->
+    <!-- ✅ CTA FIXE MOBILE -->
     <button onclick="handleContactClick()" class="cta-fixed-mobile">
         <i class="fas fa-rocket"></i>
         Commander maintenant
     </button>
 
-    <!-- ✅ NAVIGATION PREMIUM ENTIÈREMENT RESPONSIVE -->
+    <!-- ✅ NAVIGATION -->
     <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-2 sm:py-4">
             <div class="glass dark:glass-dark rounded-2xl px-4 sm:px-6 py-2 sm:py-3 shadow-lg">
                 <div class="flex justify-between items-center">
-                    <!-- Logo + Nom -->
+                    <!-- Logo -->
                     <div class="flex items-center space-x-2 sm:space-x-3">
                         <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg flex-shrink-0">
                             DL
@@ -444,7 +458,7 @@
                         </span>
                     </div>
                     
-                    <!-- ✅ DESKTOP MENU (CACHÉ SUR MOBILE) -->
+                    <!-- Desktop Menu -->
                     <div class="hidden md:flex md:space-x-6 lg:space-x-8">
                         <a href="#accueil" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Accueil</a>
                         <a href="#services" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Services</a>
@@ -453,16 +467,16 @@
                         <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Contact</a>
                     </div>
                     
-                    <!-- ✅ BOUTON COMMANDER DESKTOP -->
+                    <!-- Desktop CTA -->
                     <div class="hidden md:flex md:items-center">
                         <button type="button" class="relative bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" onclick="handleContactClick()">
                             Commander maintenant
                         </button>
                     </div>
                     
-                    <!-- ✅ BOUTON MENU MOBILE -->
+                    <!-- ✅ BOUTON MENU MOBILE (CORRIGÉ) -->
                     <div class="flex items-center md:hidden">
-                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" id="mobile-menu-button">
+                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors" id="mobile-menu-button">
                             <span class="sr-only">Menu</span>
                             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -475,38 +489,74 @@
                 </div>
             </div>
         </div>
+    </nav>
 
-        <!-- ✅ MENU MOBILE AMÉLIORÉ -->
-        <div class="md:hidden hidden px-3" id="mobile-menu">
-            <div class="glass dark:glass-dark rounded-2xl p-3 shadow-xl mt-1">
-                <div class="space-y-1">
-                    <a href="#accueil" class="block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
-                        <i class="fas fa-home mr-3 text-primary-500"></i>Accueil
-                    </a>
-                    <a href="#services" class="block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
-                        <i class="fas fa-cogs mr-3 text-primary-500"></i>Services
-                    </a>
-                    <a href="#realisations" class="block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
-                        <i class="fas fa-briefcase mr-3 text-primary-500"></i>Réalisations
-                    </a>
-                    <a href="#tarifs" class="block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
-                        <i class="fas fa-tags mr-3 text-primary-500"></i>Tarifs
-                    </a>
-                    <a href="#contact" class="block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
-                        <i class="fas fa-envelope mr-3 text-primary-500"></i>Contact
-                    </a>
-                    <div class="pt-2 px-2">
-                        <button type="button" class="w-full bg-gradient-to-r from-primary-600 to-primary-500 text-white px-4 py-3 rounded-xl text-sm font-medium transition-all shadow-lg flex items-center justify-center gap-2" onclick="handleContactClick()">
+    <!-- ✅ MENU MOBILE - VERSION CORRIGÉE (NE DÉPASSE PLUS) -->
+    <div id="mobile-menu">
+        <div class="glass dark:glass-dark">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                        DL
+                    </div>
+                    <span class="text-base font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-300">
+                        DEGUENON Luc
+                    </span>
+                </div>
+                <button type="button" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" id="close-mobile-menu">
+                    <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-1">
+                <a href="#accueil" class="flex items-center px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
+                    <i class="fas fa-home w-6 text-primary-500"></i>
+                    <span class="ml-3">Accueil</span>
+                </a>
+                <a href="#services" class="flex items-center px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
+                    <i class="fas fa-cogs w-6 text-primary-500"></i>
+                    <span class="ml-3">Services</span>
+                </a>
+                <a href="#realisations" class="flex items-center px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
+                    <i class="fas fa-briefcase w-6 text-primary-500"></i>
+                    <span class="ml-3">Réalisations</span>
+                </a>
+                <a href="#tarifs" class="flex items-center px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
+                    <i class="fas fa-tags w-6 text-primary-500"></i>
+                    <span class="ml-3">Tarifs</span>
+                </a>
+                <a href="#contact" class="flex items-center px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-700 text-base font-medium transition-colors" onclick="handleNavClick(event)">
+                    <i class="fas fa-envelope w-6 text-primary-500"></i>
+                    <span class="ml-3">Contact</span>
+                </a>
+                
+                <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="px-2">
+                        <div class="bg-gradient-to-r from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-4 mb-4">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">📞 Besoin d'aide ?</p>
+                            <a href="https://wa.me/2290159609581" class="flex items-center text-sm font-medium text-primary-600 dark:text-primary-400" target="_blank">
+                                <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                                +229 01 59 60 95 81
+                            </a>
+                        </div>
+                        
+                        <button type="button" class="w-full bg-gradient-to-r from-primary-600 to-primary-500 text-white px-4 py-3.5 rounded-xl text-sm font-medium transition-all shadow-lg flex items-center justify-center gap-2 hover:shadow-xl active:scale-95" onclick="handleContactClick()">
                             <i class="fas fa-rocket"></i>
                             Commander maintenant
                         </button>
                     </div>
                 </div>
             </div>
+            
+            <div class="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
+                &copy; 2025 DEGUENON Luc
+            </div>
         </div>
-    </nav>
+    </div>
 
-    <!-- ✅ HERO SECTION OPTIMISÉE MOBILE -->
+    <!-- ✅ HERO SECTION -->
     <section id="accueil" class="relative min-h-screen flex items-center pt-16 sm:pt-20 overflow-hidden">
         <div class="absolute inset-0 gradient-bg opacity-10 dark:opacity-20"></div>
         
@@ -515,7 +565,6 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-12">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-                <!-- TEXTE HERO -->
                 <div class="text-center lg:text-left lg:col-span-6" data-aos="fade-right" data-aos-duration="800">
                     <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
                         <i class="fas fa-code mr-2"></i>
@@ -532,7 +581,6 @@
                         <span class="font-semibold text-primary-600 dark:text-primary-400 block sm:inline mt-2 sm:mt-0">Votre vitrine digitale ouverte 24h/24</span>
                     </p>
                     
-                    <!-- STATISTIQUES RESPONSIVES -->
                     <div class="mt-6 sm:mt-8 grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto lg:mx-0">
                         <div class="text-center">
                             <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400">50+</div>
@@ -548,19 +596,6 @@
                         </div>
                     </div>
                     
-                    <!-- LISTE AVANTAGES (MASQUER CERTAINS SUR MOBILE) -->
-                    <ul class="mt-6 sm:mt-8 space-y-2 sm:space-y-3 text-gray-700 dark:text-gray-300 max-w-md mx-auto lg:mx-0 hidden sm:block">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle mt-1 mr-2 sm:mr-3 text-primary-500 text-base sm:text-xl flex-shrink-0"></i>
-                            <span class="text-sm sm:text-base">Renforce votre crédibilité et votre image de marque</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle mt-1 mr-2 sm:mr-3 text-primary-500 text-base sm:text-xl flex-shrink-0"></i>
-                            <span class="text-sm sm:text-base">Élargit votre audience et votre marché potentiel</span>
-                        </li>
-                    </ul>
-                    
-                    <!-- BOUTONS RESPONSIVES -->
                     <div class="mt-6 sm:mt-10 flex flex-col xs:flex-row gap-3 justify-center lg:justify-start">
                         <button onclick="handleContactClick()" class="w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base">
                             <i class="fas fa-rocket"></i>
@@ -573,7 +608,6 @@
                     </div>
                 </div>
                 
-                <!-- IMAGE HERO (CACHÉE SUR TRÈS PETIT MOBILE) -->
                 <div class="hidden sm:block mt-8 sm:mt-12 lg:mt-0 lg:col-span-6" data-aos="fade-left" data-aos-duration="800">
                     <div class="relative flex justify-center">
                         <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full blur-3xl opacity-30 animate-pulse-slow"></div>
@@ -587,7 +621,7 @@
         </div>
     </section>
 
-    <!-- ✅ SERVICES SECTION (DÉJÀ RESPONSIVE) -->
+    <!-- ✅ SERVICES SECTION -->
     <section id="services" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
@@ -608,7 +642,7 @@
         </div>
     </section>
 
-    <!-- ✅ COMPÉTENCES SECTION RESPONSIVE -->
+    <!-- ✅ COMPÉTENCES -->
     <section id="competences" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
@@ -663,7 +697,6 @@
                     </div>
                 </div>
                 
-                <!-- STATISTIQUES CARDS RESPONSIVES -->
                 <div class="grid grid-cols-2 gap-3 sm:gap-5 mt-6 lg:mt-0" data-aos="fade-left">
                     <div class="bg-white dark:bg-gray-700 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4">
@@ -698,7 +731,7 @@
         </div>
     </section>
 
-    <!-- ✅ RÉALISATIONS RESPONSIVES -->
+    <!-- ✅ RÉALISATIONS -->
     <section id="realisations" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
@@ -743,7 +776,6 @@
                 </div>
             </div>
             
-            <!-- TIMELINE RESPONSIVE -->
             <div class="mt-12 sm:mt-16 lg:mt-20" data-aos="fade-up">
                 <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">Parcours d'excellence</h3>
                 <div class="max-w-3xl mx-auto px-4 sm:px-0">
@@ -770,7 +802,7 @@
         </div>
     </section>
 
-    <!-- ✅ TARIFS SECTION AVEC NOUVELLE OFFRE 700K - ENTIÈREMENT RESPONSIVE -->
+    <!-- ✅ TARIFS -->
     <section id="tarifs" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
@@ -785,46 +817,40 @@
                 </p>
             </div>
 
-            <!-- ✅ GRILLE TARIFS 4 COLONNES RESPONSIVE -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8" id="pricing-container">
                 <!-- Pricing cards will be dynamically inserted here -->
             </div>
             
-            <!-- ✅ GARANTIES RESPONSIVES -->
             <div class="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
                 <div class="text-center">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                         <i class="fas fa-headset text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
                     </div>
                     <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Support 24/7</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Assistance prioritaire</p>
                 </div>
                 <div class="text-center">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                         <i class="fas fa-shield-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
                     </div>
                     <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Sécurisé</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Certificat SSL inclus</p>
                 </div>
                 <div class="text-center">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                         <i class="fas fa-mobile-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
                     </div>
                     <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Responsive</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Adapté mobile/tablette</p>
                 </div>
                 <div class="text-center">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                         <i class="fas fa-tachometer-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
                     </div>
                     <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Optimisation</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Vitesse de chargement</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ✅ TÉMOIGNAGES RESPONSIVES -->
+    <!-- ✅ TÉMOIGNAGES -->
     <section class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
@@ -845,7 +871,7 @@
         </div>
     </section>
 
-    <!-- ✅ FAQ RESPONSIVE -->
+    <!-- ✅ FAQ -->
     <section id="faq" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
@@ -861,7 +887,7 @@
                 <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
                     <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                         <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Quel est le délai de réalisation d'un site web ?</span>
-                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2"></i>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
                     </button>
                     <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
                         <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Le délai varie selon la complexité du projet. Comptez 2 à 3 semaines pour un site vitrine, et 4 à 6 semaines pour une boutique e-commerce.</p>
@@ -870,7 +896,7 @@
                 <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
                     <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                         <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Proposez-vous des formations ?</span>
-                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2"></i>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
                     </button>
                     <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
                         <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Oui, je propose des formations sur mesure pour vous permettre de gérer votre site en toute autonomie.</p>
@@ -879,7 +905,7 @@
                 <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
                     <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                         <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Comment se passe le suivi après la livraison ?</span>
-                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2"></i>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
                     </button>
                     <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
                         <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Un support est inclus selon la formule choisie. Je reste disponible par email et WhatsApp pour toute question ou modification.</p>
@@ -889,7 +915,7 @@
         </div>
     </section>
 
-    <!-- ✅ CONTACT SECTION ENTIÈREMENT RESPONSIVE -->
+    <!-- ✅ CONTACT -->
     <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
@@ -905,7 +931,6 @@
             </div>
             
             <div class="lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 items-start">
-                <!-- INFOS CONTACT RESPONSIVES -->
                 <div data-aos="fade-right" class="mb-8 lg:mb-0">
                     <div class="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Informations de contact</h3>
@@ -972,7 +997,6 @@
                     </div>
                 </div>
                 
-                <!-- FORMULAIRE CONTACT RESPONSIVE -->
                 <div data-aos="fade-left">
                     <div class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-xl p-5 sm:p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Envoyez votre demande</h3>
@@ -1012,7 +1036,7 @@
         </div>
     </section>
 
-    <!-- ✅ FOOTER RESPONSIVE -->
+    <!-- ✅ FOOTER -->
     <footer class="bg-gray-900 dark:bg-black relative overflow-hidden">
         <div class="max-w-7xl mx-auto py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="xl:grid xl:grid-cols-3 xl:gap-12">
@@ -1095,12 +1119,12 @@
     </footer>
 
     <script>
-    // ✅ MÊME SCRIPT QUE PRÉCÉDEMMENT - INCHANGÉ
+    // ✅ DONNÉES (inchangées)
     const services = [
         {
             icon: 'globe',
             title: 'Sites Web Vitrine',
-            description: 'Présentez votre entreprise en ligne avec un site web élégant et responsive qui s\'adapte à tous les appareils.',
+            description: 'Présentez votre entreprise en ligne avec un site web élégant et responsive.',
             features: ['Design personnalisé', 'Optimisé SEO', 'Responsive design', 'Formulaire de contact']
         },
         {
@@ -1191,16 +1215,19 @@
         }
     ];
 
-    // ✅ FONCTIONS
+    // ✅ FONCTIONS DE NAVIGATION
     function handleNavClick(event) {
         event.preventDefault();
         const targetId = event.currentTarget.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('mobile-menu')?.classList.add('hidden');
+        if (targetId && targetId !== '#') {
+            document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+        }
+        closeMobileMenu();
     }
 
     function scrollToSection(sectionId) {
-        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        closeMobileMenu();
     }
 
     function handleContactClick() {
@@ -1216,7 +1243,20 @@
         });
     }
 
-    // ✅ RENDU
+    // ✅ MENU MOBILE - CORRECTION COMPLÈTE
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('show');
+        document.body.style.overflow = menu.classList.contains('show') ? 'hidden' : '';
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    // ✅ RENDU SERVICES
     function renderServices() {
         const container = document.getElementById('services-container');
         if (!container) return;
@@ -1243,6 +1283,7 @@
         });
     }
 
+    // ✅ RENDU TARIFS
     function renderPricing() {
         const container = document.getElementById('pricing-container');
         if (!container) return;
@@ -1285,6 +1326,7 @@
         });
     }
 
+    // ✅ RENDU TÉMOIGNAGES
     function renderTestimonials() {
         const container = document.getElementById('testimonials-container');
         if (!container) return;
@@ -1311,30 +1353,53 @@
         });
     }
 
+    // ✅ FORMULAIRE
     function handleFormSubmit(e) {
         e.preventDefault();
         const f = e.target;
-        window.location.href = `mailto:lucdeguenon11@gmail.com?subject=Nouveau message de ${f.name.value}&body=Nom: ${f.name.value}%0AEmail: ${f.email.value}%0ATéléphone: ${f.phone.value}%0AMessage: ${f.message.value}`;
+        window.location.href = `mailto:lucdeguenon11@gmail.com?subject=Nouveau message de ${f.name.value}&body=Nom: ${f.name.value}%0AEmail: ${f.email.value}%0ATéléphone: ${f.phone.value}%0A%0AMessage:%0A${f.message.value}`;
+        
+        const toast = document.getElementById('toast');
         document.getElementById('toast-message').textContent = 'Message préparé !';
-        document.getElementById('toast').classList.add('show');
-        setTimeout(() => document.getElementById('toast').classList.remove('show'), 3000);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
         f.reset();
     }
 
-    // ✅ INIT
+    // ✅ INITIALISATION
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init({ duration: 600, once: true, offset: 50 });
+        
         renderServices();
         renderPricing();
         renderTestimonials();
         
-        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        // ✅ GESTION MENU MOBILE - CORRIGÉ
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const closeMenuBtn = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
         
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+        
+        if (closeMenuBtn) {
+            closeMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+        
+        // ✅ FERMER LE MENU EN CLIQUANT SUR LE FOND SOMBRE
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+        }
+        
+        // ✅ FORMULAIRE
         document.getElementById('contact-form')?.addEventListener('submit', handleFormSubmit);
         
-        // FAQ Accordéon
+        // ✅ FAQ ACCORDÉON
         document.querySelectorAll('#faq button').forEach(btn => {
             btn.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -1344,6 +1409,15 @@
                 icon.classList.toggle('fa-chevron-up');
             });
         });
+        
+        // ✅ BARRES DE COMPÉTENCES
+        setTimeout(() => {
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => { bar.style.width = width; }, 200);
+            });
+        }, 500);
     });
     </script>
 </body>
