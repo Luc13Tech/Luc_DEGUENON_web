@@ -23,9 +23,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Particles.js pour animation de fond dynamique -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
     <!-- Configuration Tailwind personnalisée -->
     <script>
         tailwind.config = {
@@ -54,12 +51,6 @@
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'gradient': 'gradient 8s linear infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'spin-slow': 'spin 8s linear infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'wave': 'wave 3s ease-in-out infinite',
-                        'tilt': 'tilt 5s ease-in-out infinite',
-                        'shine': 'shine 3s linear infinite',
                     },
                     keyframes: {
                         float: {
@@ -69,25 +60,6 @@
                         gradient: {
                             '0%, 100%': { 'background-position': '0% 50%' },
                             '50%': { 'background-position': '100% 50%' },
-                        },
-                        glow: {
-                            '0%': { 'box-shadow': '0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.2)' },
-                            '100%': { 'box-shadow': '0 0 30px rgba(99, 102, 241, 0.6), 0 0 60px rgba(99, 102, 241, 0.4)' }
-                        },
-                        wave: {
-                            '0%, 100%': { transform: 'rotate(0deg)' },
-                            '25%': { transform: 'rotate(5deg)' },
-                            '75%': { transform: 'rotate(-5deg)' }
-                        },
-                        tilt: {
-                            '0%, 100%': { transform: 'rotate(0deg)' },
-                            '33%': { transform: 'rotate(2deg)' },
-                            '66%': { transform: 'rotate(-2deg)' }
-                        },
-                        shine: {
-                            '0%': { 'background-position': '-100%' },
-                            '40%': { 'background-position': '200%' },
-                            '100%': { 'background-position': '200%' }
                         }
                     },
                     backgroundSize: {
@@ -142,7 +114,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        /* BOUTON WHATSAPP OPTIMISÉ */
+        /* ✅ BOUTON WHATSAPP OPTIMISÉ MOBILE (numéro mis à jour) */
         .whatsapp-float {
             position: fixed;
             width: 56px;
@@ -171,9 +143,6 @@
                 font-size: 32px;
             }
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
         .whatsapp-float:active {
             transform: scale(0.95);
         }
@@ -182,7 +151,7 @@
             50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
         }
         
-        /* BADGE DISPONIBLE */
+        /* ✅ BADGE DISPONIBLE MOBILE */
         .disponible-badge {
             position: fixed;
             bottom: 80px;
@@ -197,11 +166,6 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            animation: badge-pulse 2s infinite;
-        }
-        @keyframes badge-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
         }
         .dark .disponible-badge {
             background: #1f2937;
@@ -216,7 +180,7 @@
             }
         }
 
-        /* MENU MOBILE */
+        /* ✅ MENU MOBILE */
         #mobile-menu {
             position: fixed;
             top: 0;
@@ -265,7 +229,7 @@
             transform: translateY(0);
         }
         
-        /* CTA FIXE MOBILE */
+        /* ✅ CTA FIXE MOBILE - repositionné pour ne pas gêner */
         .cta-fixed-mobile {
             display: none;
         }
@@ -289,111 +253,13 @@
                 font-size: 14px;
                 border: 1px solid rgba(255,255,255,0.2);
                 backdrop-filter: blur(10px);
-                animation: cta-pulse 2s infinite;
-            }
-            @keyframes cta-pulse {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.02); }
             }
             .dark .cta-fixed-mobile {
                 background: linear-gradient(135deg, #4338ca, #4f46e5);
             }
         }
 
-        /* PARTICULES EN ARRIÈRE-PLAN */
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        /* CARTES SERVICES AMÉLIORÉES */
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: -1;
-        }
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
-        }
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        .dark .service-card {
-            background: #1f2937;
-            border-color: rgba(255,255,255,0.05);
-        }
-
-        /* CARTES TARIFS */
-        .pricing-card > div {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s;
-        }
-        .pricing-card:hover > div {
-            transform: scale(1.02);
-        }
-        .pricing-card.popular {
-            border: 2px solid #6366f1;
-            border-radius: 24px;
-            animation: glow 2s infinite alternate;
-        }
-        .popular-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
-            padding: 8px 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transform: rotate(45deg) translate(25%, -50%);
-            width: 150px;
-            text-align: center;
-            animation: shine 3s infinite;
-            background-size: 200% auto;
-            background-image: linear-gradient(90deg, #6366f1, #818cf8, #6366f1);
-        }
-        @media (max-width: 1023px) {
-            .popular-badge {
-                transform: rotate(0) translate(0, 0);
-                position: relative;
-                top: 0;
-                right: 0;
-                width: auto;
-                display: inline-block;
-                padding: 4px 16px;
-                border-radius: 30px;
-                margin-bottom: 12px;
-            }
-        }
-
-        /* TOAST NOTIFICATION - DÉCALÉE POUR NE PAS CACHER WHATSAPP */
+        /* ✅ TOAST NOTIFICATION - repositionnée pour ne pas cacher WhatsApp */
         .toast-notification {
             position: fixed;
             bottom: 100px;
@@ -417,7 +283,7 @@
         @media (min-width: 640px) {
             .toast-notification {
                 left: auto;
-                right: 100px; /* Décalé à droite pour ne pas chevaucher le bouton WhatsApp */
+                right: 120px; /* Décalé pour ne pas chevaucher le bouton WhatsApp */
                 bottom: 120px;
                 padding: 12px 24px;
             }
@@ -430,7 +296,7 @@
             color: white;
         }
 
-        /* SKILL BARS */
+        /* ✅ SKILL BARS */
         .skill-bar {
             height: 8px;
             border-radius: 4px;
@@ -447,17 +313,13 @@
             transition: width 1.5s ease-in-out;
         }
 
-        /* TIMELINE */
+        /* ✅ TIMELINE */
         .timeline-item {
             position: relative;
             padding-left: 30px;
             border-left: 3px solid #6366f1;
             margin-bottom: 25px;
             transition: all 0.3s;
-        }
-        .timeline-item:hover {
-            border-left-color: #10b981;
-            transform: translateX(5px);
         }
         .timeline-dot {
             position: absolute;
@@ -469,54 +331,68 @@
             border-radius: 50%;
             border: 3px solid white;
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-            transition: all 0.3s;
-        }
-        .timeline-item:hover .timeline-dot {
-            background: #10b981;
-            transform: scale(1.2);
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
         }
         .dark .timeline-dot {
             border-color: #1f2937;
         }
 
-        /* TITRES AVEC EFFET */
-        .hero-title {
-            background: linear-gradient(90deg, #4f46e5, #10b981, #4f46e5);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient 3s linear infinite;
+        /* ✅ CARTES SERVICE */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .dark .service-card {
+            background: #1f2937;
+            border-color: rgba(255,255,255,0.05);
         }
 
-        /* BOUTONS AVEC EFFET DE BRILLANCE */
-        .btn-shine {
-            position: relative;
-            overflow: hidden;
+        /* ✅ CARTES TARIFS */
+        .pricing-card > div {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        .btn-shine::after {
-            content: '';
+        .pricing-card.popular {
+            border: 2px solid #6366f1;
+            border-radius: 24px;
+        }
+        .popular-badge {
             position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255,255,255,0.2);
-            transform: rotate(30deg);
-            transition: all 0.6s;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            padding: 8px 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transform: rotate(45deg) translate(25%, -50%);
+            width: 150px;
+            text-align: center;
         }
-        .btn-shine:hover::after {
-            left: 100%;
+        @media (max-width: 1023px) {
+            .popular-badge {
+                transform: rotate(0) translate(0, 0);
+                position: relative;
+                top: 0;
+                right: 0;
+                width: auto;
+                display: inline-block;
+                padding: 4px 16px;
+                border-radius: 30px;
+                margin-bottom: 12px;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
 
-    <!-- PARTICULES D'ARRIÈRE-PLAN (uniquement sur la section hero pour plus de dynamisme) -->
-    <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></div>
-
-    <!-- ✅ NOTIFICATION TOAST -->
+    <!-- ✅ NOTIFICATION TOAST (repositionnée) -->
     <div id="toast" class="toast-notification">
         <i class="fas fa-check-circle text-green-500 text-xl flex-shrink-0"></i>
         <span id="toast-message" class="text-sm sm:text-base">Numéro copié !</span>
@@ -532,7 +408,7 @@
     </span>
     
     <!-- ✅ CTA FIXE MOBILE -->
-    <button onclick="handleContactClick()" class="cta-fixed-mobile btn-shine">
+    <button onclick="handleContactClick()" class="cta-fixed-mobile">
         <i class="fas fa-rocket"></i>
         Commander maintenant
     </button>
@@ -542,28 +418,28 @@
         <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-2 sm:py-4">
             <div class="glass dark:glass-dark rounded-2xl px-4 sm:px-6 py-2 sm:py-3 shadow-lg">
                 <div class="flex justify-between items-center">
-                    <!-- Logo avec animation -->
-                    <div class="flex items-center space-x-2 sm:space-x-3 group">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg flex-shrink-0 animate-tilt group-hover:animate-spin-slow">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-2 sm:space-x-3">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg flex-shrink-0">
                             DL
                         </div>
-                        <span class="text-base sm:text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-300 truncate max-w-[150px] xs:max-w-none animate-gradient bg-300%">
+                        <span class="text-base sm:text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-300 truncate max-w-[150px] xs:max-w-none">
                             DEGUENON Luc
                         </span>
                     </div>
                     
                     <!-- Desktop Menu -->
                     <div class="hidden md:flex md:space-x-6 lg:space-x-8">
-                        <a href="#accueil" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500 hover:scale-110" onclick="handleNavClick(event)">Accueil</a>
-                        <a href="#services" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500 hover:scale-110" onclick="handleNavClick(event)">Services</a>
-                        <a href="#realisations" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500 hover:scale-110" onclick="handleNavClick(event)">Réalisations</a>
-                        <a href="#tarifs" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500 hover:scale-110" onclick="handleNavClick(event)">Tarifs</a>
-                        <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500 hover:scale-110" onclick="handleNavClick(event)">Contact</a>
+                        <a href="#accueil" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Accueil</a>
+                        <a href="#services" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Services</a>
+                        <a href="#realisations" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Réalisations</a>
+                        <a href="#tarifs" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Tarifs</a>
+                        <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-primary-500" onclick="handleNavClick(event)">Contact</a>
                     </div>
                     
-                    <!-- Desktop CTA avec effet shine -->
+                    <!-- Desktop CTA -->
                     <div class="hidden md:flex md:items-center">
-                        <button type="button" class="relative bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-shine overflow-hidden" onclick="handleContactClick()">
+                        <button type="button" class="relative bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" onclick="handleContactClick()">
                             Commander maintenant
                         </button>
                     </div>
@@ -636,7 +512,7 @@
                             </a>
                         </div>
                         
-                        <button type="button" class="w-full bg-gradient-to-r from-primary-600 to-primary-500 text-white px-4 py-3.5 rounded-xl text-sm font-medium transition-all shadow-lg flex items-center justify-center gap-2 hover:shadow-xl active:scale-95 btn-shine overflow-hidden" onclick="handleContactClick()">
+                        <button type="button" class="w-full bg-gradient-to-r from-primary-600 to-primary-500 text-white px-4 py-3.5 rounded-xl text-sm font-medium transition-all shadow-lg flex items-center justify-center gap-2 hover:shadow-xl active:scale-95" onclick="handleContactClick()">
                             <i class="fas fa-rocket"></i>
                             Commander maintenant
                         </button>
@@ -650,57 +526,53 @@
         </div>
     </div>
 
-    <!-- ✅ HERO SECTION (AMÉLIORÉE AVEC ANIMATIONS DYNAMIQUES) -->
-    <section id="accueil" class="relative min-h-screen flex items-center pt-16 sm:pt-20 overflow-hidden" style="z-index: 1;">
-        <!-- Particules gérées par particles.js -->
-        
+    <!-- ✅ HERO SECTION -->
+    <section id="accueil" class="relative min-h-screen flex items-center pt-16 sm:pt-20 overflow-hidden">
         <div class="absolute inset-0 gradient-bg opacity-10 dark:opacity-20"></div>
         
-        <!-- Éléments flottants animés -->
         <div class="absolute top-20 left-0 w-48 h-48 sm:w-72 sm:h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
         <div class="absolute bottom-20 right-0 w-48 h-48 sm:w-72 sm:h-72 bg-secondary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style="animation-delay: 1s;"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-12">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
                 <div class="text-center lg:text-left lg:col-span-6" data-aos="fade-right" data-aos-duration="800">
-                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-medium mb-4 sm:mb-6 animate-pulse-slow">
-                        <i class="fas fa-code mr-2 animate-wave"></i>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                        <i class="fas fa-code mr-2"></i>
                         Développeur web expert
                     </div>
                     <h1 class="hero-title text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight font-extrabold">
                         <span class="block text-gray-900 dark:text-white">DEGUENON Luc</span>
-                        <span class="block bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent mt-2 sm:mt-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl animate-gradient bg-300%">
+                        <span class="block bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent mt-2 sm:mt-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl">
                             Créateur d'expériences digitales
                         </span>
                     </h1>
-                    <p class="hero-subtitle mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-pulse-slow" style="animation-delay: 0.5s;">
+                    <p class="hero-subtitle mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                         À l'ère du numérique, votre présence en ligne n'est plus une option mais une nécessité. 
-                        <span class="font-semibold text-primary-600 dark:text-primary-400 block sm:inline mt-2 sm:mt-0 animate-wave inline-block">Votre vitrine digitale ouverte 24h/24</span>
+                        <span class="font-semibold text-primary-600 dark:text-primary-400 block sm:inline mt-2 sm:mt-0">Votre vitrine digitale ouverte 24h/24</span>
                     </p>
                     
                     <div class="mt-6 sm:mt-8 grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto lg:mx-0">
-                        <div class="text-center transform hover:scale-110 transition-transform duration-300">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400 animate-bounce-slow">50+</div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400">50+</div>
                             <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Projets</div>
                         </div>
-                        <div class="text-center transform hover:scale-110 transition-transform duration-300">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400 animate-bounce-slow" style="animation-delay: 0.2s;">100%</div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400">100%</div>
                             <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Satisfaction</div>
                         </div>
-                        <div class="text-center transform hover:scale-110 transition-transform duration-300">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400 animate-bounce-slow" style="animation-delay: 0.4s;">24/7</div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary-600 dark:text-primary-400">24/7</div>
                             <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Support</div>
                         </div>
                     </div>
                     
                     <div class="mt-6 sm:mt-10 flex flex-col xs:flex-row gap-3 justify-center lg:justify-start">
-                        <button onclick="handleContactClick()" class="w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base btn-shine overflow-hidden">
-                            <i class="fas fa-rocket animate-bounce-slow"></i>
+                        <button onclick="handleContactClick()" class="w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="fas fa-rocket"></i>
                             <span>Commander</span>
                         </button>
-                        <button onclick="scrollToSection('services')" class="w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-700 text-sm sm:text-base hover:border-primary-500 group">
-                            <i class="fas fa-play group-hover:animate-spin-slow"></i>
+                        <button onclick="scrollToSection('services')" class="w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-700 text-sm sm:text-base">
+                            <i class="fas fa-play"></i>
                             <span>Services</span>
                         </button>
                     </div>
@@ -709,10 +581,9 @@
                 <div class="hidden sm:block mt-8 sm:mt-12 lg:mt-0 lg:col-span-6" data-aos="fade-left" data-aos-duration="800">
                     <div class="relative flex justify-center">
                         <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full blur-3xl opacity-30 animate-pulse-slow"></div>
-                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500 hover:scale-105 hover:shadow-2xl animate-float">
+                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500">
                             <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site web professionnel" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/30 to-transparent"></div>
-                            <div class="absolute inset-0 border-4 border-transparent hover:border-primary-500 rounded-2xl sm:rounded-3xl transition-all duration-500"></div>
                         </div>
                     </div>
                 </div>
@@ -720,9 +591,502 @@
         </div>
     </section>
 
-    <!-- Le reste du contenu (services, compétences, réalisations, tarifs, témoignages, FAQ, contact, footer) reste inchangé -->
-    <!-- Pour des raisons de concision, je ne répète pas tout le HTML ici, mais il est identique à l'original -->
-    <!-- ... (tout le contenu existant) ... -->
+    <!-- ✅ SERVICES SECTION -->
+    <section id="services" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-cogs mr-1 sm:mr-2"></i>Services
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 px-2">
+                    Nos solutions digitales
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-4">
+                    Nous offrons une gamme complète de services pour répondre à tous vos besoins numériques.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8" id="services-container">
+                <!-- Services dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ COMPÉTENCES -->
+    <section id="competences" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                        <i class="fas fa-chart-line mr-1 sm:mr-2"></i>Expertise
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                        Des compétences<br class="hidden sm:block">polyvalentes
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
+                        Développeur web, analyste de données et web marketer, je maîtrise l'ensemble de la chaîne de création digitale.
+                    </p>
+                    
+                    <div class="space-y-4 sm:space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1 sm:mb-2">
+                                <span class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">Développement web</span>
+                                <span class="text-sm sm:text-base text-primary-600 dark:text-primary-400">95%</span>
+                            </div>
+                            <div class="skill-bar h-2 sm:h-2.5">
+                                <div class="skill-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 sm:mb-2">
+                                <span class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">Analyse de données</span>
+                                <span class="text-sm sm:text-base text-primary-600 dark:text-primary-400">88%</span>
+                            </div>
+                            <div class="skill-bar h-2 sm:h-2.5">
+                                <div class="skill-bar-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 sm:mb-2">
+                                <span class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">Marketing digital</span>
+                                <span class="text-sm sm:text-base text-primary-600 dark:text-primary-400">85%</span>
+                            </div>
+                            <div class="skill-bar h-2 sm:h-2.5">
+                                <div class="skill-bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 sm:mb-2">
+                                <span class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">UI/UX Design</span>
+                                <span class="text-sm sm:text-base text-primary-600 dark:text-primary-400">90%</span>
+                            </div>
+                            <div class="skill-bar h-2 sm:h-2.5">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 sm:gap-5 mt-6 lg:mt-0" data-aos="fade-left">
+                    <div class="bg-white dark:bg-gray-700 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4">
+                            <i class="fas fa-tachometer-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">+50</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Projets réalisés</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all mt-4 sm:mt-6 lg:mt-8">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4">
+                            <i class="fas fa-users text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">+30</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Clients satisfaits</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4">
+                            <i class="fas fa-clock text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">5 ans</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">D'expérience</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all mt-4 sm:mt-6 lg:mt-8">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4">
+                            <i class="fas fa-globe text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">24/7</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Support disponible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ RÉALISATIONS -->
+    <section id="realisations" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-briefcase mr-1 sm:mr-2"></i>Réalisations
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Projets récents
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-4">
+                    Découvrez quelques-uns des projets que j'ai réalisés pour mes clients.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projet e-commerce" class="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5 lg:p-6">
+                        <div class="text-white">
+                            <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1">Boutique en ligne</h3>
+                            <p class="text-xs sm:text-sm opacity-90">Site e-commerce complet avec paiement intégré</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Application web" class="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5 lg:p-6">
+                        <div class="text-white">
+                            <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1">Dashboard analytique</h3>
+                            <p class="text-xs sm:text-sm opacity-90">Tableau de bord interactif pour suivi KPI</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site vitrine" class="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5 lg:p-6">
+                        <div class="text-white">
+                            <h3 class="text-base sm:text-lg lg:text-xl font-bold mb-1">Site vitrine</h3>
+                            <p class="text-xs sm:text-sm opacity-90">Design moderne et responsive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 sm:mt-16 lg:mt-20" data-aos="fade-up">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">Parcours d'excellence</h3>
+                <div class="max-w-3xl mx-auto px-4 sm:px-0">
+                    <div class="timeline-item relative pl-6 sm:pl-8 pb-6 sm:pb-8">
+                        <span class="timeline-dot w-3 h-3 sm:w-4 sm:h-4 left-[-8px] sm:left-[-10px]"></span>
+                        <span class="text-xs sm:text-sm text-primary-600 dark:text-primary-400 font-semibold">2024</span>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white mt-1">Lancement de 15+ sites web</h4>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Accompagnement de PME dans leur transformation digitale</p>
+                    </div>
+                    <div class="timeline-item relative pl-6 sm:pl-8 pb-6 sm:pb-8">
+                        <span class="timeline-dot w-3 h-3 sm:w-4 sm:h-4 left-[-8px] sm:left-[-10px]"></span>
+                        <span class="text-xs sm:text-sm text-primary-600 dark:text-primary-400 font-semibold">2023</span>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white mt-1">Développement d'applications mobiles</h4>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Création de 3 applications hybrides pour startups</p>
+                    </div>
+                    <div class="timeline-item relative pl-6 sm:pl-8">
+                        <span class="timeline-dot w-3 h-3 sm:w-4 sm:h-4 left-[-8px] sm:left-[-10px]"></span>
+                        <span class="text-xs sm:text-sm text-primary-600 dark:text-primary-400 font-semibold">2022</span>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white mt-1">Certification Google Analytics</h4>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Expertise en analyse de données et SEO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ TARIFS -->
+    <section id="tarifs" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-tags mr-1 sm:mr-2"></i>Tarifs
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Nos offres adaptées à votre budget
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-4">
+                    Des solutions personnalisées pour chaque type de projet.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8" id="pricing-container">
+                <!-- Pricing cards will be dynamically inserted here -->
+            </div>
+            
+            <div class="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                        <i class="fas fa-headset text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Support 24/7</h4>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                        <i class="fas fa-shield-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Sécurisé</h4>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                        <i class="fas fa-mobile-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Responsive</h4>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                        <i class="fas fa-tachometer-alt text-primary-600 dark:text-primary-400 text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h4 class="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white">Optimisation</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ TÉMOIGNAGES -->
+    <section class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-star mr-1 sm:mr-2"></i>Témoignages
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Ce que disent nos clients
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-4">
+                    La satisfaction de nos clients est notre plus belle récompense.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8" id="testimonials-container">
+                <!-- Testimonials will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ FAQ -->
+    <section id="faq" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-question-circle mr-1 sm:mr-2"></i>FAQ
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Questions fréquentes
+                </h2>
+            </div>
+            
+            <div class="space-y-3 sm:space-y-4">
+                <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
+                    <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                        <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Quel est le délai de réalisation d'un site web ?</span>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
+                    </button>
+                    <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Le délai varie selon la complexité du projet. Comptez 2 à 3 semaines pour un site vitrine, et 4 à 6 semaines pour une boutique e-commerce.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
+                    <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                        <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Proposez-vous des formations ?</span>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
+                    </button>
+                    <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Oui, je propose des formations sur mesure pour vous permettre de gérer votre site en toute autonomie.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-xl sm:rounded-2xl shadow-md overflow-hidden">
+                    <button class="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                        <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Comment se passe le suivi après la livraison ?</span>
+                        <i class="fas fa-chevron-down text-primary-600 text-sm sm:text-base ml-2 transition-transform"></i>
+                    </button>
+                    <div class="px-4 sm:px-6 pb-3 sm:pb-4 hidden">
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Un support est inclus selon la formule choisie. Je reste disponible par email et WhatsApp pour toute question ou modification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ CONTACT -->
+    <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+                    <i class="fas fa-paper-plane mr-1 sm:mr-2"></i>Contact
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Discutons de votre projet
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-4">
+                    Vous avez un projet en tête ? Remplissez le formulaire ci-dessous pour me faire part de vos besoins.
+                </p>
+            </div>
+            
+            <div class="lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-12 items-start">
+                <div data-aos="fade-right" class="mb-8 lg:mb-0">
+                    <div class="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Informations de contact</h3>
+                        
+                        <div class="space-y-4 sm:space-y-5 lg:space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-sm sm:text-base lg:text-xl"></i>
+                                </div>
+                                <div class="ml-3 sm:ml-4">
+                                    <h4 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Téléphone / WhatsApp</h4>
+                                    <a href="https://wa.me/221784855699" class="text-sm sm:text-base text-primary-600 dark:text-primary-400 hover:underline break-all" target="_blank">
+                                        +221 78 485 56 99
+                                    </a>
+                                    <button onclick="copyPhoneNumber()" class="block mt-1 sm:mt-2 text-xs sm:text-sm bg-white dark:bg-gray-600 px-3 py-1.5 rounded-lg shadow-sm hover:shadow transition-all">
+                                        <i class="far fa-copy mr-1"></i> Copier
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <i class="fas fa-envelope text-sm sm:text-base lg:text-xl"></i>
+                                </div>
+                                <div class="ml-3 sm:ml-4">
+                                    <h4 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Email</h4>
+                                    <a href="mailto:lucdeguenon11@gmail.com" class="text-sm sm:text-base text-primary-600 dark:text-primary-400 hover:underline break-all">
+                                        lucdeguenon11@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-sm sm:text-base lg:text-xl"></i>
+                                </div>
+                                <div class="ml-3 sm:ml-4">
+                                    <h4 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white">Localisation</h4>
+                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Bénin - Disponible à distance</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200 dark:border-gray-600">
+                            <h4 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">Suivez-moi</h4>
+                            <div class="flex space-x-3 sm:space-x-4">
+                                <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary-600 hover:text-white transition-all">
+                                    <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
+                                </a>
+                                <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary-600 hover:text-white transition-all">
+                                    <i class="fab fa-twitter text-xs sm:text-sm"></i>
+                                </a>
+                                <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary-600 hover:text-white transition-all">
+                                    <i class="fab fa-instagram text-xs sm:text-sm"></i>
+                                </a>
+                                <a href="https://wa.me/221784855699" class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary-600 hover:text-white transition-all">
+                                    <i class="fab fa-whatsapp text-xs sm:text-sm"></i>
+                                </a>
+                                <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary-600 hover:text-white transition-all">
+                                    <i class="fab fa-linkedin-in text-xs sm:text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-xl p-5 sm:p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Envoyez votre demande</h3>
+                        <form class="space-y-4 sm:space-y-5" id="contact-form">
+                            <div>
+                                <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">Nom complet</label>
+                                <input id="name" name="name" type="text" required 
+                                    class="w-full border border-gray-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-all text-sm sm:text-base">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">Email</label>
+                                <input id="email" name="email" type="email" required 
+                                    class="w-full border border-gray-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-all text-sm sm:text-base">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">Téléphone</label>
+                                <input id="phone" name="phone" type="tel" 
+                                    class="w-full border border-gray-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-all text-sm sm:text-base">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">Votre projet et besoins</label>
+                                <textarea id="message" name="message" rows="4" required 
+                                    class="w-full border border-gray-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-all resize-none text-sm sm:text-base"
+                                    placeholder="Décrivez votre projet..."></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" 
+                                    class="w-full bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Envoyer la demande
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ FOOTER -->
+    <footer class="bg-gray-900 dark:bg-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-12">
+                <div class="space-y-4 sm:space-y-6 text-center sm:text-left">
+                    <div class="flex items-center justify-center sm:justify-start space-x-3">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-xl shadow-lg">
+                            DL
+                        </div>
+                        <span class="text-lg sm:text-xl lg:text-2xl font-bold text-white">DEGUENON Luc</span>
+                    </div>
+                    <p class="text-sm sm:text-base text-gray-300 max-w-xs mx-auto sm:mx-0">
+                        Développeur web • Analyste de données • Web Marketer
+                    </p>
+                    <div class="flex justify-center sm:justify-start space-x-4">
+                        <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all">
+                            <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all">
+                            <i class="fab fa-twitter text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all">
+                            <i class="fab fa-instagram text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/221784855699" class="w-8 h-8 sm:w-9 sm:h-9 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all">
+                            <i class="fab fa-whatsapp text-xs sm:text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8 sm:mt-10 xl:mt-0 xl:col-span-2">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wider">Solutions</h3>
+                            <ul class="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+                                <li><a href="#services" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Sites web</a></li>
+                                <li><a href="#services" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Applications</a></li>
+                                <li><a href="#services" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">E-commerce</a></li>
+                                <li><a href="#services" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">SEO</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wider">Support</h3>
+                            <ul class="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+                                <li><a href="#contact" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                                <li><a href="#faq" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                                <li><a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wider">Expertise</h3>
+                            <ul class="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+                                <li><span class="text-xs sm:text-sm text-gray-400">Développement web</span></li>
+                                <li><span class="text-xs sm:text-sm text-gray-400">Analyse de données</span></li>
+                                <li><span class="text-xs sm:text-sm text-gray-400">Marketing digital</span></li>
+                            </ul>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wider">Légal</h3>
+                            <ul class="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+                                <li><a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Confidentialité</a></li>
+                                <li><a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">Conditions</a></li>
+                                <li><a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-white transition-colors">CGV</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <p class="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+                        &copy; 2025 DEGUENON Luc. Tous droits réservés.
+                    </p>
+                    <p class="text-xs sm:text-sm text-gray-400">
+                        Développeur web • Analyste • Web Marketer
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
     // ✅ DONNÉES (inchangées)
@@ -862,7 +1226,7 @@
         document.body.style.overflow = '';
     }
 
-    // ✅ RENDU SERVICES (inchangé)
+    // ✅ RENDU SERVICES
     function renderServices() {
         const container = document.getElementById('services-container');
         if (!container) return;
@@ -873,7 +1237,7 @@
             el.setAttribute('data-aos', 'fade-up');
             el.setAttribute('data-aos-delay', (i * 50).toString());
             el.innerHTML = `
-                <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center text-white text-base sm:text-lg lg:text-xl shadow-lg mb-4 sm:mb-5 flex-shrink-0 animate-bounce-slow">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center text-white text-base sm:text-lg lg:text-xl shadow-lg mb-4 sm:mb-5 flex-shrink-0">
                     <i class="fas fa-${service.icon}"></i>
                 </div>
                 <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">${service.title}</h3>
@@ -889,7 +1253,7 @@
         });
     }
 
-    // ✅ RENDU TARIFS (inchangé)
+    // ✅ RENDU TARIFS
     function renderPricing() {
         const container = document.getElementById('pricing-container');
         if (!container) return;
@@ -902,7 +1266,7 @@
             
             let badge = '';
             if (plan.popular) badge = '<div class="popular-badge">POPULAIRE</div>';
-            else if (plan.name === 'Entreprise') badge = '<div class="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-2 sm:px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg z-10 animate-pulse-slow">EXCELLENCE</div>';
+            else if (plan.name === 'Entreprise') badge = '<div class="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-2 sm:px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg z-10">EXCELLENCE</div>';
             
             el.innerHTML = `
                 <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 lg:p-8 flex flex-col h-full border border-gray-100 dark:border-gray-700 relative overflow-hidden">
@@ -923,7 +1287,7 @@
                         </ul>
                     </div>
                     <button onclick="handleContactClick()" 
-                        class="w-full bg-gradient-to-r ${plan.name === 'Entreprise' ? 'from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600' : plan.popular ? 'from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600' : 'from-gray-600 to-gray-500 hover:from-gray-700 hover:to-gray-600'} text-white font-semibold py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all btn-shine overflow-hidden">
+                        class="w-full bg-gradient-to-r ${plan.name === 'Entreprise' ? 'from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600' : plan.popular ? 'from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600' : 'from-gray-600 to-gray-500 hover:from-gray-700 hover:to-gray-600'} text-white font-semibold py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all">
                         Choisir ce plan
                     </button>
                 </div>
@@ -932,14 +1296,14 @@
         });
     }
 
-    // ✅ RENDU TÉMOIGNAGES (inchangé)
+    // ✅ RENDU TÉMOIGNAGES
     function renderTestimonials() {
         const container = document.getElementById('testimonials-container');
         if (!container) return;
         container.innerHTML = '';
         testimonials.forEach((t, i) => {
             const el = document.createElement('div');
-            el.className = 'bg-white dark:bg-gray-800 p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:scale-105';
+            el.className = 'bg-white dark:bg-gray-800 p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700';
             el.setAttribute('data-aos', 'fade-up');
             el.setAttribute('data-aos-delay', (i * 50).toString());
             el.innerHTML = `
@@ -976,30 +1340,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init({ duration: 600, once: true, offset: 50 });
         
-        // Initialisation des particules (effet dynamique)
-        if (document.getElementById('particles-js')) {
-            particlesJS('particles-js', {
-                particles: {
-                    number: { value: 80, density: { enable: true, value_area: 800 } },
-                    color: { value: '#6366f1' },
-                    shape: { type: 'circle' },
-                    opacity: { value: 0.3, random: true },
-                    size: { value: 3, random: true },
-                    line_linked: { enable: true, distance: 150, color: '#6366f1', opacity: 0.2, width: 1 },
-                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
-                },
-                interactivity: {
-                    detect_on: 'canvas',
-                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
-                }
-            });
-        }
-        
         renderServices();
         renderPricing();
         renderTestimonials();
         
-        // GESTION MENU MOBILE
+        // ✅ GESTION MENU MOBILE
         const mobileMenuBtn = document.getElementById('mobile-menu-button');
         const closeMenuBtn = document.getElementById('close-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1020,10 +1365,10 @@
             });
         }
         
-        // FORMULAIRE
+        // ✅ FORMULAIRE
         document.getElementById('contact-form')?.addEventListener('submit', handleFormSubmit);
         
-        // FAQ ACCORDÉON
+        // ✅ FAQ ACCORDÉON
         document.querySelectorAll('#faq button').forEach(btn => {
             btn.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -1034,7 +1379,7 @@
             });
         });
         
-        // BARRES DE COMPÉTENCES
+        // ✅ BARRES DE COMPÉTENCES
         setTimeout(() => {
             document.querySelectorAll('.skill-bar-fill').forEach(bar => {
                 const width = bar.style.width;
