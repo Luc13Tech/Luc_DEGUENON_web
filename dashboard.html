@@ -427,7 +427,7 @@ button{font-family:'Space Grotesk',sans-serif;cursor:pointer}
           <div class="gauge-wrap">
             <div class="gauge-num" id="rt-today">0</div>
           </div>
-          <div class="gauge-bar"><div class="gauge-fill" id="rt-bar2" style="width:0%;background:linear-gradient(90deg,var(--or-d),var(--orl))"></div></div>
+          <div class="gauge-bar"><div class="gauge-fill" id="rt-bar2" style="width:0%;background:linear-gradient(90deg,var(--ord),var(--orl))"></div></div>
           <div class="gauge-lbl">Inscrits aujourd'hui</div>
         </div>
         <div class="card" style="text-align:center">
@@ -584,28 +584,55 @@ button{font-family:'Space Grotesk',sans-serif;cursor:pointer}
 //  CONFIG
 // ═══════════════════════════════════════
 const ADMIN_EMAIL = 'lucdeguenon11@gmail.com';
+const ADMIN_PASSWORD = 'admin123';  // ⚠️ Change ce mot de passe si besoin
 const SESSION_KEY = 'ld_dash_session';
 
 // ═══════════════════════════════════════
 //  AUTH
 // ═══════════════════════════════════════
 function agLogin(){
-  const em = (document.getElementById('ag-em').value||'').trim().toLowerCase();
+  const em = (document.getElementById('ag-em').value || '').trim().toLowerCase();
   const pw = document.getElementById('ag-pw').value;
   const err = document.getElementById('ag-err');
   err.classList.remove('on');
-  if(!em||!pw){ err.textContent='Remplissez tous les champs.'; err.classList.add('on'); return; }
-  if(em !== ADMIN_EMAIL){ err.textContent='Accès refusé. Email incorrect.'; err.classList.add('on'); return; }
-  const users = JSON.parse(localStorage.getItem('ld_users')||'[]');
-  const user = users.find(u => u.email.toLowerCase()===em && u.password===btoa(pw));
-  if(!user){ err.textContent='Accès refusé. Mot de passe incorrect.'; err.classList.add('on'); return; }
-  const s = {email:em, expiry:Date.now()+3600000, token:btoa(em+'_'+Date.now())};
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+  
+  // Vérifier que les champs sont remplis
+  if(!em || !pw){
+    err.textContent = 'Remplissez tous les champs.';
+    err.classList.add('on');
+    return;
+  }
+  
+  // Vérifier l'email
+  if(em !== ADMIN_EMAIL){
+    err.textContent = 'Accès refusé. Email incorrect.';
+    err.classList.add('on');
+    return;
+  }
+  
+  // Vérifier le mot de passe
+  if(pw !== ADMIN_PASSWORD){
+    err.textContent = 'Accès refusé. Mot de passe incorrect.';
+    err.classList.add('on');
+    return;
+  }
+  
+  // Succès : créer la session
+  const session = {
+    email: em,
+    expiry: Date.now() + 3600000, // 1 heure
+    token: btoa(em + '_' + Date.now())
+  };
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  
+  // Afficher le dashboard
   document.getElementById('agate').classList.add('off');
-  document.getElementById('dash-layout').style.display='flex';
+  document.getElementById('dash-layout').style.display = 'flex';
+  
+  // Charger les données
   loadAll();
   startClock();
-  toast('Accès admin accordé','ok');
+  toast('Accès admin accordé', 'ok');
 }
 
 function agLogout(){
@@ -615,11 +642,12 @@ function agLogout(){
 }
 
 function checkSession(){
-  const s = JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null');
-  if(s && s.email===ADMIN_EMAIL && Date.now()<s.expiry){
+  const s = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');
+  if(s && s.email === ADMIN_EMAIL && Date.now() < s.expiry){
     document.getElementById('agate').classList.add('off');
-    document.getElementById('dash-layout').style.display='flex';
-    loadAll(); startClock();
+    document.getElementById('dash-layout').style.display = 'flex';
+    loadAll();
+    startClock();
   }
 }
 
@@ -670,7 +698,6 @@ function closeSb(){
 // ═══════════════════════════════════════
 //  DATA HELPERS — JSONBin + localStorage cache
 // ═══════════════════════════════════════
-// Même config que index.html
 const JSONBIN_ID  = '69fed309250b1311c3251173';
 const JSONBIN_KEY = '$2a$10$BbP7KW81KS1sdDTKfEJo7On653RPaL798VozEpYFKwCMgDgKW3NTu';
 const JB_OK = JSONBIN_ID !== 'VOTRE_BIN_ID_ICI' && JSONBIN_KEY !== 'VOTRE_API_KEY_ICI';
@@ -1029,7 +1056,7 @@ function exportCSV(){
 // ═══════════════════════════════════════
 function toast(msg,type='ok'){
   const el=document.getElementById('toast');
-  el.className='toast show '+type;
+  el.className='show '+type;
   document.getElementById('t-ico').className='fas fa-'+(type==='ok'?'circle-check':type==='er'?'circle-exclamation':'circle-info');
   document.getElementById('t-msg').textContent=msg;
   clearTimeout(el._t);
